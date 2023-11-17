@@ -3,6 +3,7 @@
 import 'package:ejara_assignment_project/routing/routeErrorScreen.dart';
 import 'package:ejara_assignment_project/screens/choosePaymentMethodScreen.dart';
 import 'package:ejara_assignment_project/screens/loginScreen.dart';
+import 'package:ejara_assignment_project/screens/newMobileMoneyScreen.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
@@ -16,6 +17,10 @@ class RouteGenerator {
       case ChoosePaymentMethodScreen.routeName:
         return MaterialPageRoute(
           builder: (context) => const ChoosePaymentMethodScreen(),
+        );
+      case NewMobileMoneyScreen.routeName:
+        return MaterialPageRoute(
+          builder: (context) => const NewMobileMoneyScreen(),
         );
       default:
         _errorRoute();

@@ -10,7 +10,7 @@ class EjaraFlexCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 15),
+      margin: const EdgeInsets.only(top: 15, left: 5, right: 5),
       height: 250,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -20,10 +20,10 @@ class EjaraFlexCard extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 1,
-            blurRadius: 10,
-          ),
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 1,
+              blurRadius: 10,
+              offset: const Offset(2, 2)),
         ],
       ),
       child: Column(

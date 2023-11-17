@@ -3,10 +3,12 @@ import 'package:flutter_svg/svg.dart';
 class AppIcons {
   static const eyeClosed = 'assets/icons/eye-closed.1.1.svg';
   static const eyeOpened = 'assets/icons/eye.1.1.svg';
+  static const cross = 'assets/icons/cross1.svg';
 
   static const allIcons = [
     eyeClosed,
     eyeOpened,
+    cross,
   ];
 
   static Future<void> preloadIconsSVGs() async {

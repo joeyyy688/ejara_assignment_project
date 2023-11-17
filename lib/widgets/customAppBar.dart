@@ -5,9 +5,13 @@ import 'package:ejara_assignment_project/widgets/buttons/iconBoxButton.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key, required this.pageBackButtonCallback});
+  const CustomAppBar(
+      {super.key,
+      required this.pageBackButtonCallback,
+      required this.iconData});
 
   final Function pageBackButtonCallback;
+  final IconData iconData;
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +25,8 @@ class CustomAppBar extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 13),
               child: IconBoxButton(
-                icon: const Icon(
-                  Icons.arrow_back_ios_new_rounded,
+                icon: Icon(
+                  iconData,
                   size: 17,
                   color: AppColor.primary,
                 ),

@@ -14,6 +14,7 @@ class BaseButton extends StatelessWidget {
     required this.labelColor,
     this.isLoading = false,
     this.loaderColor = AppColor.white,
+    this.icon,
   }) : super(key: key);
 
   final VoidCallback? onPressed;
@@ -22,6 +23,7 @@ class BaseButton extends StatelessWidget {
   final Color labelColor;
   final bool isLoading;
   final Color loaderColor;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -59,13 +61,24 @@ class BaseButton extends StatelessWidget {
             ? PlatformSpecificLoader(
                 loaderColor: loaderColor,
               )
-            : Text(
-                label,
-                style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                      color: labelColor,
-                      fontSize: AppTextSizes.paragraphText2Medium,
-                      fontWeight: FontWeight.w700,
-                    ),
+            : Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (icon != null) ...{
+                    icon!,
+                    const SizedBox(
+                      width: 5,
+                    )
+                  },
+                  Text(
+                    label,
+                    style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                          color: labelColor,
+                          fontSize: AppTextSizes.paragraphText2Medium,
+                          fontWeight: FontWeight.w700,
+                        ),
+                  ),
+                ],
               ),
       ),
     );
