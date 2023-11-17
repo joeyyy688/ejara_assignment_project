@@ -1,7 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:ejara_assignment_project/constants/app_colors.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ejara_assignment_project/constants/app_textSizes.dart';
+import 'package:ejara_assignment_project/widgets/platformSpecificLoader.dart';
 import 'package:flutter/material.dart';
 
 class BaseButton extends StatelessWidget {
@@ -47,19 +48,24 @@ class BaseButton extends StatelessWidget {
         onPressed: onPressed,
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith(getBgColor),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(14.0),
+            ),
+          ),
           // foregroundColor: MaterialStateProperty.resolveWith(getTextColor),
         ),
         child: isLoading
-            ? CupertinoActivityIndicator(
-                color: loaderColor,
-                radius: 13,
+            ? PlatformSpecificLoader(
+                loaderColor: loaderColor,
               )
             : Text(
                 label,
-                style: Theme.of(context)
-                    .textTheme
-                    .labelLarge!
-                    .copyWith(color: labelColor, fontSize: 14),
+                style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                      color: labelColor,
+                      fontSize: AppTextSizes.paragraphText2Medium,
+                      fontWeight: FontWeight.w700,
+                    ),
               ),
       ),
     );

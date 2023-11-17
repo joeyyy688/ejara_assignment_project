@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+// ignore_for_file: file_names
+
 import 'package:ejara_assignment_project/constants/app_colors.dart';
 import 'package:ejara_assignment_project/constants/app_textSizes.dart';
 import 'package:ejara_assignment_project/widgets/inputs/inputDecoration.dart';

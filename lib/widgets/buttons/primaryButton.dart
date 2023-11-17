@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:ejara_assignment_project/constants/app_colors.dart';
 import 'package:ejara_assignment_project/widgets/buttons/baseButton.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class PrimaryButton extends StatelessWidget {
     Key? key,
     required this.onPressed,
     required this.label,
-    this.color = Colors.black,
+    this.color = AppColor.primary,
     this.disabled = false,
     this.isLoading = false,
   }) : super(key: key);

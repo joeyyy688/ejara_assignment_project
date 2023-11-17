@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 ThemeData lightThemeData(BuildContext context) {
   return ThemeData(
+    useMaterial3: false,
     brightness: Brightness.light,
     primaryColor: AppColor.primary,
     scaffoldBackgroundColor: AppColor.white,
