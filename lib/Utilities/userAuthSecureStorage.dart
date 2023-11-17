@@ -7,7 +7,7 @@ class UserAuthSecureStorage {
 
   static const _keyUserAuthToken = 'userAuthToken';
 
-  static Future setUserAuthToken(String token) async {
+  static Future<void> setUserAuthToken(String token) async {
     return await _storage.write(key: _keyUserAuthToken, value: token);
   }
 
@@ -15,7 +15,7 @@ class UserAuthSecureStorage {
     return await _storage.read(key: _keyUserAuthToken);
   }
 
-  static Future<dynamic> removeAuthToken() async {
+  static Future<void> removeAuthToken() async {
     return await _storage.delete(key: _keyUserAuthToken);
   }
 }

@@ -13,7 +13,7 @@ class AppApiConstants {
 
   static const loginUrl = '$baseUrlV1/auth/login';
   static const listOfPaymentMethodsUrl =
-      '$baseUrlV2/marketplace/payment-types-per-country?country_code=CM&transactionType=buy';
+      '$baseUrlV2/marketplace/payment-types-per-country?countryCode=CM&transactionType=buy';
   static const listOfPaymentSettingsPerMethodUrl =
-      '$baseUrlV1//customer/payment-settings-per-type?paymentTypeId=1&countryCode=CM&transactionType=buy';
+      '$baseUrlV1/customer/payment-settings-per-type?paymentTypeId=';
 }

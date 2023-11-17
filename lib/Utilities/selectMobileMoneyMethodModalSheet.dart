@@ -4,12 +4,15 @@ import 'package:ejara_assignment_project/constants/app_colors.dart';
 import 'package:ejara_assignment_project/constants/app_icons.dart';
 import 'package:ejara_assignment_project/constants/app_textSizes.dart';
 import 'package:ejara_assignment_project/constants/data.dart';
+import 'package:ejara_assignment_project/providers/paymentMethodsProvider.dart';
 import 'package:ejara_assignment_project/screens/newMobileMoneyScreen.dart';
 import 'package:ejara_assignment_project/widgets/buttons/iconButton.dart';
 import 'package:ejara_assignment_project/widgets/buttons/primaryButton.dart';
 import 'package:ejara_assignment_project/widgets/customDivider.dart';
+import 'package:ejara_assignment_project/widgets/platformSpecificLoader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class SelectMobileMoneyBottomSheet {
   showSelectMobileMoneyModal({
@@ -59,49 +62,67 @@ class SelectMobileMoneyBottomSheet {
               padding: const EdgeInsets.only(top: 10, bottom: 10),
               child: const CustomDivider(),
             ),
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: selectMobileMoneyMethod.length,
-                itemBuilder: (context, index) {
+            Consumer<PaymentMethodsProvider>(
+              builder: (_, value, __) {
+                if (value.getPaymentSettingPerMethod == null) {
                   return Container(
-                    margin: const EdgeInsets.only(left: 16, right: 16),
-                    child: Card(
-                      elevation: 1,
-                      shadowColor: Colors.grey.withOpacity(0.2),
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      child: RadioListTile<String>(
-                        title: Text(
-                          selectMobileMoneyMethod[index].title,
-                          style:
-                              Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    fontSize: AppTextSizes.labelText1,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                        ),
-                        subtitle: Text(
-                          selectMobileMoneyMethod[index].subtitle,
-                          style:
-                              Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    fontSize: AppTextSizes.labelText1,
-                                    fontWeight: FontWeight.w100,
-                                    color: AppColor.grey4,
-                                  ),
-                        ),
-                        activeColor: AppColor.primary,
-                        dense: true,
-                        value: selectMobileMoneyMethod[index].subtitle,
-                        groupValue: defaultSelectedVariationName,
-                        onChanged: (value) {
-                          setState(() {
-                            defaultSelectedVariationName = value!;
-                          });
-                        },
-                      ),
+                    padding: const EdgeInsets.only(top: 40, bottom: 30),
+                    child: const PlatformSpecificLoader(
+                      loaderColor: AppColor.primary,
                     ),
                   );
-                }),
+                } else {
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: value.getPaymentSettingPerMethod!.data.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: const EdgeInsets.only(left: 16, right: 16),
+                          child: Card(
+                            elevation: 1,
+                            shadowColor: Colors.grey.withOpacity(0.2),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child: RadioListTile<String>(
+                              title: Text(
+                                selectMobileMoneyMethod[index].title,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                      fontSize: AppTextSizes.labelText1,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                              ),
+                              subtitle: Text(
+                                selectMobileMoneyMethod[index].subtitle,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                      fontSize: AppTextSizes.labelText1,
+                                      fontWeight: FontWeight.w100,
+                                      color: AppColor.grey4,
+                                    ),
+                              ),
+                              activeColor: AppColor.primary,
+                              dense: true,
+                              value: selectMobileMoneyMethod[index].subtitle,
+                              groupValue: defaultSelectedVariationName,
+                              onChanged: (value) {
+                                setState(() {
+                                  defaultSelectedVariationName = value!;
+                                });
+                              },
+                            ),
+                          ),
+                        );
+                      });
+                }
+              },
+            ),
             const SplitDivider(
               text: 'Or',
             ),
@@ -129,7 +150,7 @@ class SelectMobileMoneyBottomSheet {
               child: PrimaryButton(
                 label: 'Continue',
                 onPressed: () {
-                  Navigator.of(context, rootNavigator: true).pop();
+                  Navigator.pop(context);
                 },
               ),
             ),

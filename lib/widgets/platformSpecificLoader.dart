@@ -16,12 +16,14 @@ class PlatformSpecificLoader extends StatelessWidget {
             color: loaderColor,
             radius: 13,
           )
-        : SizedBox(
-            width: 20,
-            height: 20,
-            child: CircularProgressIndicator(
-              color: loaderColor,
-              strokeWidth: 3,
+        : Center(
+            child: SizedBox(
+              width: 30,
+              height: 30,
+              child: CircularProgressIndicator(
+                color: loaderColor,
+                strokeWidth: 3,
+              ),
             ),
           ));
   }

@@ -44,3 +44,6 @@ final selectMobileMoneyMethod = [
     subtitle: '6 90 95, 04 90',
   ),
 ];
+
+const String username = 'ejaraTests';
+const String password = 'CmKVGexi%REJjn!u65BI7PlR5';

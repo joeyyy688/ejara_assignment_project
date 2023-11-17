@@ -28,6 +28,7 @@ class _NewMobileMoneyScreenState extends State<NewMobileMoneyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0),
         child: CustomAppBar(
@@ -53,7 +54,7 @@ class _NewMobileMoneyScreenState extends State<NewMobileMoneyScreen> {
               ),
             ),
             const SizedBox(
-              height: 60,
+              height: 45,
             ),
             InputLabel(
               label: 'Choose the mobile money operator',
@@ -119,7 +120,7 @@ class _NewMobileMoneyScreenState extends State<NewMobileMoneyScreen> {
             PrimaryButton(
               label: 'Continue',
               onPressed: () {
-                Navigator.of(context, rootNavigator: true).pop();
+                Navigator.maybePop(context);
               },
             ),
             const SizedBox(height: 60),

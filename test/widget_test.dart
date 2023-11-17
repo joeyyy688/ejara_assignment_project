@@ -1,30 +1,41 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// ignore_for_file: file_names
 
+import 'package:ejara_assignment_project/screens/newMobileMoneyScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:ejara_assignment_project/main.dart';
-
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('NewMobileMoneyScreen UI Test', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: NewMobileMoneyScreen(),
+      ),
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify the initial UI state.
+    expect(find.text('New Mobile Money'), findsOneWidget);
+    expect(find.text('Choose the mobile money operator'), findsOneWidget);
+    expect(find.text('Phone number'), findsOneWidget);
+    expect(find.text('Full name'), findsOneWidget);
+    expect(find.text('Save as payment method'), findsOneWidget);
+    expect(find.text('Continue'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    // Interact with the widgets
+    await tester.tap(find.byType(DropdownButton<String>));
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    await tester.enterText(
+        find.byType(TextField).at(0), '1234567890'); // Phone number
+    await tester.enterText(
+        find.byType(TextField).at(1), 'John Doe'); // Full name
+
+    await tester.pump();
+
+    // Verify the updated UI state after interactions.
+    expect(find.text('Save as payment method'), findsOneWidget);
+    expect(find.text('Continue'), findsOneWidget);
+
+    await tester.tap(find.text('Continue'));
+    await tester.pump();
   });
 }

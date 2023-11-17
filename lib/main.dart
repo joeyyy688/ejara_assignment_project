@@ -1,11 +1,23 @@
 import 'package:ejara_assignment_project/constants/app_icons.dart';
+import 'package:ejara_assignment_project/providers/paymentMethodsProvider.dart';
 import 'package:ejara_assignment_project/routing/routeGenerator.dart';
 import 'package:ejara_assignment_project/themes/themeData.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<PaymentMethodsProvider>(
+          create: (context) => PaymentMethodsProvider(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 
   // preload all SVG Icons
   await AppIcons.preloadIconsSVGs();
@@ -24,44 +36,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Ejara Assignmet Project',
-      initialRoute: '/',
-      onGenerateRoute: RouteGenerator.generateRoute,
-      theme: lightThemeData(context),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: MaterialApp(
+        title: 'Ejara Assignmet Project',
+        initialRoute: '/',
+        onGenerateRoute: RouteGenerator.generateRoute,
+        theme: lightThemeData(context),
+      ),
     );
   }
 }
-
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({super.key, required this.title});
-
-//   final String title;
-
-//   @override
-//   State<MyHomePage> createState() => _MyHomePageState();
-// }
-
-// class _MyHomePageState extends State<MyHomePage> {
-
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-//         title: Text(widget.title),
-//       ),
-//       body: const Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             Text(
-//               'You have pushed the button this many times:',
-//             ),
-//           ],
-//         ),
-//       ), // This trailing comma makes auto-formatting nicer for build methods.
-//     );
-//   }
-// }
