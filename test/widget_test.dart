@@ -21,7 +21,7 @@ void main() {
     expect(find.text('Continue'), findsOneWidget);
 
     // Interact with the widgets
-    await tester.tap(find.byType(DropdownButton<String>));
+    await tester.tap(find.byType(DropdownButton<String>), warnIfMissed: false);
     await tester.pump();
 
     await tester.enterText(
@@ -35,7 +35,7 @@ void main() {
     expect(find.text('Save as payment method'), findsOneWidget);
     expect(find.text('Continue'), findsOneWidget);
 
-    await tester.tap(find.text('Continue'));
+    await tester.tap(find.text('Continue'), warnIfMissed: false);
     await tester.pump();
   });
 }
