@@ -7,7 +7,9 @@ import 'package:flutter/foundation.dart';
 
 class AuthApis {
   static Future<LoginAuthResponse?> login(
-      String username, String password) async {
+    String username,
+    String password,
+  ) async {
     try {
       final response = await GenericRequest(
         method: RequestMethods.post,
